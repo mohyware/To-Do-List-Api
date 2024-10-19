@@ -1,20 +1,27 @@
 const Task = require('../Models/Task')
 const { StatusCodes } = require('http-status-codes')
-const { BadRequestError, NotFoundError, UnauthenticatedError } = require('../errors')
+const { BadRequestError, NotFoundError } = require('../errors')
 
 const getAllTasks = async (req, res) => {
-
-  const { page = 1, limit = 10 } = req.query;
-
+  const {
+    user: { userId },
+    query: { page = 1, limit = 10 },
+  } = req
   const pageNum = parseInt(page, 10);
   const limitNum = parseInt(limit, 10);
 
   const total = await Task.countDocuments();
 
-  const tasks = await Task.find({})
+  const tasks = await Task.find({
+    createdBy: userId,
+  })
     .sort('createdAt')
     .skip((pageNum - 1) * limitNum)
     .limit(limitNum);
+
+  if (tasks.length < 1) {
+    throw new NotFoundError(`No Tasks was found for this user`)
+  }
 
   res.status(StatusCodes.OK).json({
     tasks,
@@ -62,13 +69,6 @@ const updateTask = async (req, res) => {
     req.body,
     { new: true, runValidators: true }
   )
-  // If the task exists, return a forbidden edit error.
-  const exist = await Task.findOne({
-    _id: taskId,
-  })
-  if (exist) {
-    throw new UnauthenticatedError('Forbidden')
-  }
 
   if (!task) {
     throw new NotFoundError(`No Task with id ${taskId}`)
@@ -86,17 +86,10 @@ const deleteTask = async (req, res) => {
     _id: taskId,
     createdBy: userId,
   })
-  // If the task exists, return a forbidden delete error.
-  const exist = await Task.findOne({
-    _id: taskId,
-  })
-  if (exist) {
-    throw new UnauthenticatedError('Forbidden')
-  }
   if (!task) {
     throw new NotFoundError(`No Task with id ${taskId}`)
   }
-  res.status(StatusCodes.OK).json({ task })
+  res.status(StatusCodes.OK).json({ msg: "Task Deleted successfully" })
 }
 
 module.exports = {
