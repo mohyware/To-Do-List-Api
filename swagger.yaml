@@ -45,7 +45,7 @@ paths:
             schema:
               $ref: '#/components/schemas/LoginUserRequest'
             example:
-              email: ahmed@gmail.com
+              email: mohy@gmail.com
               password: secret
         required: true
       responses:
@@ -54,7 +54,7 @@ paths:
           headers: {}
       deprecated: false
       security: []
-  /todos:
+  /tasks:
     post:
       tags:
         - Tasks
@@ -87,7 +87,7 @@ paths:
           description: ''
           headers: {}
       deprecated: false
-  /todos/{id}:
+  /tasks/{id}:
     parameters:
       - in: path
         name: id
