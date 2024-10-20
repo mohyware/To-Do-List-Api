@@ -1,13 +1,17 @@
 const { StatusCodes } = require('http-status-codes')
 const { BadRequestError, UnauthenticatedError } = require('../errors')
 const userService = require('../services/auth')
+const createJWT = require('../utilities/Jwt')
+const { hash, comparePassword } = require('../utilities/password')
 const register = async (req, res) => {
     const { email, password, name } = req.body
     if (!email || !password || !name) {
         throw new BadRequestError('Please provide email ,name and password')
     }
-    const user = await userService.createUser({ email, password, name });
-    const token = user.createJWT()
+
+    const hashedPassword = await hash(password);
+    const user = await userService.createUser({ email, password: hashedPassword, name });
+    const token = createJWT(user.id, user.name);
     res.status(StatusCodes.CREATED).json({ user: { name: user.name }, token })
 }
 
@@ -23,12 +27,11 @@ const login = async (req, res) => {
     if (!user) {
         throw new UnauthenticatedError('Invalid Credentials')
     }
-    const isPasswordCorrect = await user.comparePassword(password)
+    const isPasswordCorrect = await comparePassword(password, user.password)
     if (!isPasswordCorrect) {
         throw new UnauthenticatedError('Invalid Credentials')
     }
-    // compare password
-    const token = user.createJWT()
+    const token = createJWT(user.id, user.name);
     res.status(StatusCodes.OK).json({ user: { name: user.name }, token })
 }
 

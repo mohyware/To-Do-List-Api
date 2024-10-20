@@ -37,7 +37,7 @@ const insertData = async () => {
     try {
         await User.create(data);
 
-        console.log('Data Inserted');
+        console.log('Data Inserted'.green);
         process.exit();
     } catch (error) {
         console.log(error);
@@ -47,10 +47,8 @@ const insertData = async () => {
 // Delete data from DB
 const destroyData = async () => {
     try {
-        const users = await User.find({});
-        console.log(users)
         await User.deleteMany();
-        console.log('Data Destroyed');
+        console.log('Data Destroyed'.red);
         process.exit();
     } catch (error) {
         console.log(error);
