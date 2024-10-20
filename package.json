@@ -7,7 +7,10 @@
     "dev": "cross-env NODE_ENV=development nodemon src/app.js",
     "user-script": "cross-env NODE_ENV=development node scripts/dummyData/seeder.js",
     "tasks-script": "cross-env NODE_ENV=development node scripts/dummyData/seeder.js",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix ",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "",
@@ -33,6 +36,10 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3"
+    "@eslint/js": "^9.13.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.13.0",
+    "globals": "^15.11.0",
+    "prettier": "^3.3.3"
   }
 }

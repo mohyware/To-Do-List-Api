@@ -1,13 +1,15 @@
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
 
 const createJWT = function (id, name) {
-    return jwt.sign(
-        { userId: id, name: name },
-        process.env.JWT_SECRET,
-        {
-            expiresIn: process.env.JWT_LIFETIME,
-        }
-    )
-}
+  const secret = process.env.JWT_SECRET;
+  const lifeTime = process.env.JWT_LIFETIME;
+  return jwt.sign(
+    { userId: id, name: name },
+    secret,
+    {
+      expiresIn: lifeTime,
+    }
+  );
+};
 
-module.exports = createJWT
+module.exports = createJWT;
