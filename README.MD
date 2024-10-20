@@ -8,6 +8,9 @@ This project aims to create a robust and efficient RESTful API for managing to-d
 - Error handling: Provide informative error messages and handle exceptions gracefully.
 - Security: Implement measures to protect the API and user data.
 - Swagger integration: Use Swagger to provide comprehensive API documentation, making it easy for developers to understand and interact with the API.
+
+## Upcoming Features:
+- Unit Testing
 # How to run this project
 1. Clone this repository
 2. Run `npm install`
