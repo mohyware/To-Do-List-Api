@@ -1,11 +1,7 @@
 /* eslint-disable */
-require('../../../config/configDb');
 const authService = require('../../../src/services/auth');
 const User = require('../../../src/Models/User')
 const mongoose = require('../../../config/configDb')
-
-
-
 
 afterAll(async () => {
     await mongoose.disconnect();

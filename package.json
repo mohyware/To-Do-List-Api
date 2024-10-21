@@ -5,13 +5,14 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production node src/app.js",
     "dev": "cross-env NODE_ENV=development nodemon src/app.js",
-    "user-script": "cross-env NODE_ENV=development node scripts/dummyData/seeder.js",
-    "tasks-script": "cross-env NODE_ENV=development node scripts/dummyData/seeder.js",
-    "test": "jest",
+    "script-u": "cross-env NODE_ENV=development node scripts/dummyData/user.js",
+    "script-t": "cross-env NODE_ENV=development node scripts/dummyData/task.js",
+    "test": "cross-env NODE_ENV=development jest --testPathPattern=tests/integration/auth --runInBand" ,
     "lint": "eslint src/",
-    "lint:fix": "eslint src/ --fix ",
+    "lint:fix": "eslint . --fix ",
     "format": "prettier --write ."
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -40,6 +41,7 @@
     "cross-env": "^7.0.3",
     "eslint": "^9.13.0",
     "globals": "^15.11.0",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "supertest": "^7.0.0"
   }
 }

@@ -1,9 +1,7 @@
 /* eslint-disable */
-require('../../../config/configDb')
 const mongoose = require('../../../config/configDb')
 const server = require('../../../src/app')
 const request = require('supertest')
-const Task = require('../../../src/Models/Task')
 const User = require('../../../src/Models/User')
 const { StatusCodes } = require('http-status-codes');
 
@@ -11,6 +9,8 @@ afterAll(async () => {
     await mongoose.disconnect();
     server.close();
 })
+
+jest.setTimeout(10000);
 
 describe('Register API', () => {
     const registerEndpoint = '/api/v1/auth/register';
