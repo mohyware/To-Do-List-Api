@@ -1,5 +1,4 @@
 const { StatusCodes } = require('http-status-codes');
-const { NotFoundError } = require('../errors');
 const taskService = require('../services/Tasks');
 const getAllTasks = async (req, res) => {
   const {
@@ -11,9 +10,6 @@ const getAllTasks = async (req, res) => {
 
   const tasks = await taskService.getAllTasks(userId, pageNum, limitNum);
   const total = tasks.length;
-  if (total < 1) {
-    throw new NotFoundError('No Tasks was found for this user');
-  }
 
   res.status(StatusCodes.OK).json({
     tasks,
