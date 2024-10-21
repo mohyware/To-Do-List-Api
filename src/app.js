@@ -49,11 +49,13 @@ app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 4000;
+const env = process.env.NODE_ENV || 'development';
 
+let server;
 const start = async () => {
   try {
-    app.listen(port, () =>
-      console.log(`Server is listening on port ${port}...`)
+    server = app.listen(port, () =>
+      console.log(`Server is listening on ${env} on port ${port}...`)
     );
   } catch (error) {
     console.log(error);
@@ -61,3 +63,4 @@ const start = async () => {
 };
 
 start();
+module.exports = server;

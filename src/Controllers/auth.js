@@ -5,8 +5,16 @@ const createJWT = require('../utilities/Jwt');
 const { hash, comparePassword } = require('../utilities/password');
 const register = async (req, res) => {
   const { email, password, name } = req.body;
-  if (!email || !password || !name) {
-    throw new BadRequestError('Please provide email ,name and password');
+  if (!name) {
+    throw new BadRequestError('Name is required');
+  }
+
+  if (!email) {
+    throw new BadRequestError('Email is required');
+  }
+
+  if (!password) {
+    throw new BadRequestError('Password is required');
   }
 
   const hashedPassword = await hash(password);
