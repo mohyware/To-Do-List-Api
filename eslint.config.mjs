@@ -8,7 +8,7 @@ export default [
   pluginJs.configs.recommended,
   {
     rules: {
-      'no-console': 'warn',
+      //*'no-console': 'warn',
       //* Avoid Bugs
       'no-undef': 'error',
       'semi': 'error',
