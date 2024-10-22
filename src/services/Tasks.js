@@ -1,7 +1,10 @@
 const Task = require('../Models/Task');
 const { BadRequestError, NotFoundError } = require('../errors');
 
-const getAllTasks = async (userId, pageNum = 1, limitNum = 10) => {
+const getAllTasks = async (userId, pageNum, limitNum = 10) => {
+  if (pageNum < 1 || !pageNum) {
+    pageNum = 1;
+  }
   const tasks = await Task.find({
     createdBy: userId,
   })
