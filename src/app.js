@@ -23,6 +23,9 @@ const TasksRouter = require('./Routes/Tasks');
 // error handler
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
+// compress all responses
+const compression = require('compression');
+app.use(compression());
 
 app.set('trust proxy', 1);
 app.use(
