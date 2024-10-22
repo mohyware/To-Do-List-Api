@@ -8,7 +8,7 @@
     "script-u": "cross-env NODE_ENV=development node scripts/dummyData/user.js",
     "script-t": "cross-env NODE_ENV=development node scripts/dummyData/task.js",
     "test-i": "cross-env NODE_ENV=development jest --testPathPattern=tests/integration --runInBand" ,
-    "test-u": "cross-env NODE_ENV=development jest --testPathPattern=tests/unit/service" ,
+    "test-u": "cross-env NODE_ENV=development jest --testPathPattern=tests/unit" ,
     "lint": "eslint src/",
     "lint:fix": "eslint . --fix ",
     "format": "prettier --write ."
