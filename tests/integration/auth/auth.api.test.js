@@ -141,6 +141,18 @@ describe('Login API', () => {
         expect(res.body).toHaveProperty('msg', 'Please provide email and password');
     });
 
+    it('should return 400 status when password is wrong', async () => {
+        const res = await request(server)
+            .post(loginEndpoint)
+            .send({
+                email: validUserData.email,
+                password: 'invalid passowrd'
+            });
+
+        expect(res.statusCode).toBe(StatusCodes.UNAUTHORIZED);
+        expect(res.body).toHaveProperty('msg', 'Invalid Credentials');
+    });
+
     it('should return 401 status for non-existing user', async () => {
         const invalidUser = {
             email: 'nonexisting@gmail.com',
