@@ -1,6 +1,5 @@
 /node_modules
 /coverage
-/scripts
 
 #.env files
 .env.development
