@@ -8,9 +8,11 @@ const xss = require('xss-clean');
 const rateLimiter = require('express-rate-limit');
 
 // Swagger
+const path = require('path');
 const swaggerUI = require('swagger-ui-express');
 const YAML = require('yamljs');
-const swaggerDocument = YAML.load('./src/docs/swagger.yaml');
+const swaggerFilePath = path.resolve(__dirname, './docs/swagger.yaml');
+const swaggerDocument = YAML.load(swaggerFilePath);
 
 const express = require('express');
 const app = express();
