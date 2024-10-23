@@ -65,5 +65,5 @@ const start = async () => {
   }
 };
 
-start();
-module.exports = server;
+//start();
+module.exports = app;
