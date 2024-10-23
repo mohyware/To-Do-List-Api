@@ -1,11 +1,10 @@
 // 3rd party libraries
-const dotenv = require('dotenv');
+//const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
-const env = process.env.NODE_ENV || 'development';
-
+//const env = process.env.NODE_ENV || 'development';
 // Load the appropriate .env file
-dotenv.config({ path: `.env.${env}` });
+//dotenv.config({ path: `.env.${env}` });
 
 // database connection
 const mongoURI = process.env.MONGODB_URI;

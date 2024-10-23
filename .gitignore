@@ -4,5 +4,6 @@
 #.env files
 .env.development
 .env.production
+.env
 
 .vercel
