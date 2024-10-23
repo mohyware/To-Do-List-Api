@@ -51,10 +51,10 @@ app.use('/api/v1/tasks', authenticateUser, TasksRouter);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 4000;
-const env = process.env.NODE_ENV || 'development';
+//const port = process.env.PORT || 4000;
+//const env = process.env.NODE_ENV || 'development';
 
-let server;
+/* let server;
 const start = async () => {
   try {
     server = app.listen(port, () =>
@@ -63,7 +63,7 @@ const start = async () => {
   } catch (error) {
     console.log(error);
   }
-};
+}; */
 
 //start();
 module.exports = app;
